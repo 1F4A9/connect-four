@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useReducer } from 'react';
+import styled from 'styled-components';
+
+import { WIDTH, HEIGHT } from './constants/Constants';
+import { reducer } from './reducers/app';
+import Grid from './components/Grid';
+
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+`;
 
 function App() {
+  const [state, dispatch] = useReducer(reducer, { 
+    gameBoard: new Array(WIDTH * HEIGHT).fill(null),
+    activePlayer: 'yellow',
+  })
+
+  function addDiscs(index) {
+    dispatch({
+      type: 'addDisc',
+      index
+    })
+  }
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <Grid state={state} addDiscs={addDiscs}/>
+    </Container>
   );
 }
 
 export default App;
+
