@@ -5,6 +5,7 @@ import { WIDTH, HEIGHT } from '../constants/Constants';
 import { reducer } from '../reducers/app';
 import { GlobalStyle } from '../shared/GlobalStyle';
 import Grid from './Grid';
+import { WinPopup } from '../components/WinPopup';
 
 const Container = styled.div`
   display: flex;
@@ -36,12 +37,11 @@ function App() {
   return (
     <Container>
       <GlobalStyle />
+      {state.winner ? <WinPopup winner={state.winner}/> : null}
       <h1>Connect Four</h1>
-      {state.winner ? <p>{state.winner}</p> : null}
       <Grid state={state} addDiscs={addDiscs}/>
     </Container>
   );
 }
 
 export default App;
-
