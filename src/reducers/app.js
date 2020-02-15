@@ -1,5 +1,5 @@
 import { WIDTH, HEIGHT } from '../constants/Constants';
-import { checkWinner } from '../components/GetWinner';
+import { checkWinner } from '../containers/CheckForWinner';
 
 export function reducer(state, action) {
   const newCells = [...state.gameBoard];
