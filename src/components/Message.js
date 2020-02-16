@@ -18,10 +18,20 @@ const Container = styled.div`
   z-index: 2;
 `;
 
-export function WinPopup({ winner }) {
+export function Message({ state, newGame }) {
+  const { winner, tie } = state;
+
+  let msg = null;
+  
+  if (winner) {
+    msg = winner;
+  } else if (tie) {
+    msg = tie;
+  }
+
   return ReactDOM.createPortal (
     <Container>
-      <h2>{winner}</h2>
+      <h2 onClick={() => newGame()}>{msg}</h2>
     </Container>,
     document.getElementById('portal-root')
   )

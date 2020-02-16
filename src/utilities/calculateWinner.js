@@ -10,7 +10,7 @@ function allEqual(ar) {
   }
 }
 
-export function checkWinner(gameBoard) {
+export function calculateWinner(gameBoard) {
 
   // HORIZONTAL
   for (let y = 0; y < HEIGHT; y++) {
