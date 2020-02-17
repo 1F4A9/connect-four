@@ -4,7 +4,7 @@ import styled, { keyframes } from 'styled-components';
 
 import { upperCaseFirst } from '../utilities/upperCaseFirst';
 
-const zoom = keyframes`
+const fadeIn = keyframes`
   from {
     opacity: 0;
     transform: scale(0);
@@ -30,7 +30,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
 
-  animation-name: ${zoom};
+  animation-name: ${fadeIn};
   animation-duration: 0.4s;
   animation-fill-mode: forwards;
 
