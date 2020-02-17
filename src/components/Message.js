@@ -1,6 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+import { upperCaseFirst } from '../utilities/upperCaseFirst';
+
+const zoom = keyframes`
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+`;
 
 const Container = styled.div`
   position: absolute;
@@ -10,29 +23,41 @@ const Container = styled.div`
   margin-left: -150px;
   top: 50%;
   margin-top: -150px;
-
   text-align: center;
-
   border-radius: 7px;
   background: #55b9f3;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+
+  animation-name: ${zoom};
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+
+  i {
+    font-size: 60px;
+    margin-top: 45px;
+    cursor: pointer;
+  }
+}
 `;
 
 export function Message({ state, newGame }) {
   const { winner, tie } = state;
 
   let msg = null;
-  
+
   if (winner) {
-    msg = winner;
+    msg = `${upperCaseFirst(winner)} wins!`;
   } else if (tie) {
-    msg = tie;
+    msg = `We have a ${tie}!`;
   }
 
   return ReactDOM.createPortal (
-    <Container>
-      <h2 onClick={() => newGame()}>{msg}</h2>
-    </Container>,
+      <Container msg={msg}>
+        <h2>{msg}</h2>
+        <i className="fas fa-redo" onClick={() => newGame()}></i>
+      </Container>,
     document.getElementById('portal-root')
   )
 }

@@ -45,6 +45,7 @@ export function reducer(state, action) {
         gameBoard: new Array(WIDTH * HEIGHT).fill(null),
         activePlayer: 'yellow',
         winner: null,
+        tie: null,
       }
 
     default:

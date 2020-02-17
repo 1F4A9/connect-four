@@ -13,12 +13,6 @@ const Container = styled.div`
   align-items: center;
   flex-direction: column;
   height: 100vh;
-
-  h1 {
-    font-family: 'Merienda One', cursive;
-    font-size: 50px;
-    margin-bottom: 30px;
-  }
 `;
 
 function GameBoard() {
